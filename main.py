@@ -6,11 +6,13 @@ import shutil
 import os
 
 from flask import Flask, jsonify
+from flask_cors import CORS
 
 from stats import stats_bp
 from markdowner import markdowner_bp
 
 app = Flask(__name__)
+CORS(app)
 app.register_blueprint(stats_bp)
 app.register_blueprint(markdowner_bp)
 
@@ -25,7 +27,7 @@ def run_app():
 def run_stats():
     from stats.get import get_stats
     while True:
-        time.sleep(1)
+        time.sleep(1800)
         get_stats(save=True)
 
 
